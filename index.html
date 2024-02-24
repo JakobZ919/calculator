@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate</title>
+    <style>
+        body {
+            background-color: #302b54; /* Dark purple background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator-container {
+            perspective: 800px; /* Set perspective for 3D effect */
+        }
+
+        .calculator {
+            background-color: #574b90; /* Purple calculator background */
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.6); /* Deep 3D effect */
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-gap: 10px;
+            transform-style: preserve-3d; /* Preserve 3D transformations */
+            transform: rotateX(0deg) rotateY(0deg); /* No rotation */
+            transition: transform 0.5s ease; /* Smooth transition */
+        }
+
+        .num, .op {
+            width: 100%;
+            height: 75px;
+            font-size: 24px;
+            margin: 0;
+            border: none;
+            background-color: #8866ab; /* Light purple buttons */
+            color: #fff; /* White text */
+            cursor: pointer;
+            outline: none;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+            box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.4); /* Inner shadow */
+        }
+
+        .num:hover, .op:hover {
+            background-color: #af8bcd; /* Lighter purple on hover */
+        }
+
+        #a1 {
+            font-size: 36px;
+            grid-column: span 4;
+            text-align: right;
+            padding: 10px;
+            background-color: #8866ab; /* Light purple display background */
+            color: #fff; /* White display text */
+            border-radius: 10px;
+            box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.4); /* Inner shadow */
+        }
+
+        .num, .op {
+            border: 4px solid #4d3c6d; /* Dark purple border */
+        }
+
+        .num:hover, .op:hover {
+            border: 4px solid #8866ab; /* Lighter purple border on hover */
+        }
+
+        .num:active, .op:active {
+            box-shadow: none; /* Remove shadow on click */
+            transform: translate(2px, 2px); /* Simulate button press */
+        }
+    </style>
+</head>
+<body>
+<div class="calculator-container">
+    <div class="calculator">
+        <h1 id="a1"> </h1>
+        <button class="num" onclick="addto(1)" >1</button>
+        <button class="num" onclick="addto(2)">2</button>
+        <button class="num" onclick="addto(3)">3</button>
+        <button class="op" onclick="opr('+')">+</button>
+        <button class="num" onclick="addto(4)">4</button>
+        <button class="num" onclick="addto(5)">5</button>
+        <button class="num" onclick="addto(6)">6</button>
+        <button class="op" onclick="opr('-')">-</button>
+        <button class="num" onclick="addto(7)">7</button>
+        <button class="num" onclick="addto(8)">8</button>
+        <button class="num" onclick="addto(9)">9</button>
+        <button class="op" onclick="opr('x')">x</button>
+        <button class="num"></button>
+        <button class="num" onclick="addto(0)">0</button>
+        <button class="op" onclick="opr(':')">/</button>
+        <button class="op" onclick="equal()">=</button>
+    </div>
+</div>
+<script>
+    var a = [];
+    var op = "";
+    function addto(x){
+        document.getElementById("a1").innerText += String(x);
+    }
+    function opr(x){
+        a.push(Number(document.getElementById("a1").innerText));
+        document.getElementById("a1").innerText = " ";
+        op = "";
+        op = x;
+    }
+    function equal(){
+        a.push(Number(document.getElementById("a1").innerText));
+        if (op == "+"){
+            document.getElementById("a1").innerText = String(a[0] + a[1]);
+            a = [];
+        }
+        if (op == "-"){
+            document.getElementById("a1").innerText = String(a[0] - a[1]);
+            a = [];
+        }
+        if (op == "x"){
+            document.getElementById("a1").innerText = String(a[0] * a[1]);
+            a = [];
+        }
+        if (op == ":"){
+            document.getElementById("a1").innerText = String(a[0] / a[1]);
+            a = [];
+        }
+    }
+</script>
+</body>
+</html>

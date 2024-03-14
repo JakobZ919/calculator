@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculate</title>
+    <script src="index.js"></script>
     <style>
         body {
             background-color: #302b54;
@@ -97,37 +98,6 @@
         <button class="op" onclick="equal()">=</button>
     </div>
 </div>
-<script>
-    var a = [];
-    var op = "";
-    function addto(x){
-        document.getElementById("a1").innerText += String(x);
-    }
-    function opr(x){
-        a.push(Number(document.getElementById("a1").innerText));
-        document.getElementById("a1").innerText = " ";
-        op = "";
-        op = x;
-    }
-    function equal(){
-        a.push(Number(document.getElementById("a1").innerText));
-        if (op == "+"){
-            document.getElementById("a1").innerText = String(a[0] + a[1]);
-            a = [];
-        }
-        if (op == "-"){
-            document.getElementById("a1").innerText = String(a[0] - a[1]);
-            a = [];
-        }
-        if (op == "x"){
-            document.getElementById("a1").innerText = String(a[0] * a[1]);
-            a = [];
-        }
-        if (op == ":"){
-            document.getElementById("a1").innerText = String(a[0] / a[1]);
-            a = [];
-        }
-    }
-</script>
+
 </body>
 </html>
